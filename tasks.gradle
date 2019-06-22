@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+ext.setProperty('asadminDir', "${payaraHome}${File.separator}bin");
+ext.setProperty('asadminFile', System.properties['os.name'].toLowerCase().contains('windows') ? ['cmd', '/c', 'asadmin.bat'] : './asadmin')
+
+war {
+    archiveName = 'ROOT.war'
+}
+
+task startServer(type: Exec) {
+    workingDir asadminDir;
+    commandLine asadminFile;
+
+    args "start-domain"
+}
+
+task stopServer(type: Exec) {
+    workingDir asadminDir;
+    commandLine asadminFile;
+
+    args "stop-domain"
+}
+
+task('deploy', dependsOn: 'war', type: Exec) {
+
+    workingDir asadminDir;
+    commandLine asadminFile;
+    args "deploy", "--force=true", "--port=${payaraAdminPort}", "--contextroot=/", "${war.archivePath}"
+}
