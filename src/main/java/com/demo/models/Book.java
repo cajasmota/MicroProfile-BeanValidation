@@ -12,15 +12,15 @@ public class Book
 {
     private Long id;
 
-    @NotNull
     @Size(min = 6)
+    @NotNull(message = "El nombre del libro es obligatorio")
     private String name;
 
-    @NotNull
+    @NotNull(message = "El autor es obligatorio")
     private String author;
 
-    @Min(6)
-    @Max(200)
-    @NotNull
+    @Min(value = 6, message = "El libro puede tener 6 páginas como mínimo")
+    @Max(value = 200, message = "El libro puede tener 200 paginas como máximo")
+    @NotNull(message = "Debe de ingresar un número de paginas")
     private Integer pages;
 }

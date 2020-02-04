@@ -31,7 +31,7 @@ public class Root
     @POST
     public Book createBook(@Valid Book book)
     {
-        //Do somehing, save to DB and return the book with a new ID
+        //Do something like saving to DB and then return the book with a new ID
         book.setId(20L);
         return book;
     }

@@ -10,9 +10,6 @@ import javax.ws.rs.ext.Provider;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Created by Jorge on 14/05/2016.
- */
 
 @Provider
 public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException>
